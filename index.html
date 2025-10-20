@@ -7,58 +7,87 @@
   <link href="styles.css" rel="stylesheet" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <img src="assets/images/hero.jpg" alt="Mi Cosina" class="logo" />
-        <div class="brand-text">
-          <div class="name">Mi Cosina</div> DEMO WEBSITE by Geek Web Labz®
-          <div class="tag">Authentic Flavor, Made Fresh Every Day</div>
-        </div>
-      </div>
-      <div class="cart-toggle" id="cartToggle">Cart <span id="cartCount">0</span></div>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <div class="hero-left">
-        <h1>Mi Cosina</h1>
-        <p class="hero-sub">Modern &amp; Zen — Mexican flavors with a clean, bright experience.</p>
-        <a class="btn primary" id="viewMenuBtn">View Menu</a>
-      </div>
-      <div class="hero-right">
-        <img src="assets/images/hero.jpg" alt="Tacos on table" class="hero-img" />
-      </div>
-    </section>
-
-    <section id="menu" class="menu-section">
-      <h2>Menu</h2>
-      <div class="menu-grid" id="menuGrid"></div>
-    </section>
-  </main>
-
-  <aside class="cart-panel" id="cartPanel" aria-hidden="true">
-    <h3>Your Order</h3>
-    <div id="cartItems" class="cart-items"></div>
-    <div class="cart-total">Total: <span id="cartTotal">$0.00</span></div>
-    <div class="cart-actions">
-      <button class="btn" id="clearCart">Clear</button>
-      <button class="btn primary" id="placeOrder">Place Order</button>
-    </div>
-  </aside>
-
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose">×</button>
-      <div id="modalBody"></div>
+  <!-- Loader Intro -->
+  <div id="loader" class="loader-screen">
+    <div class="loader-text">
+      <h1 class="loader-title">Mi Cosina</h1>
+      <p class="loader-sub">DEMO WEBSITE®</p>
     </div>
   </div>
 
-  <footer class="site-footer">
-    <div class="container">© Mi Cosina — DEMO WEBSITE by Geek Web Labz® </div>
-  </footer>
+  <!-- Main Site Content -->
+  <div id="site" style="visibility:hidden;">
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <img src="assets/images/hero.jpg" alt="Mi Cosina" class="logo" />
+          <div class="brand-text">
+            <div class="name">Mi Cosina</div> DEMO WEBSITE
+            <div class="tag">Authentic Flavor, Made Fresh Every Day</div>
+          </div>
+        </div>
+        <div class="cart-toggle" id="cartToggle">Cart <span id="cartCount">0</span></div>
+      </div>
+    </header>
 
+    <main class="container">
+      <section class="hero">
+        <div class="hero-left">
+          <h1>Mi Cosina</h1>
+          <p class="hero-sub">Modern &amp; Zen — Mexican flavors with a clean, bright experience.</p>
+          <a class="btn primary" id="viewMenuBtn">View Menu</a>
+        </div>
+        <div class="hero-right">
+          <img src="assets/images/hero.jpg" alt="Tacos on table" class="hero-img" />
+        </div>
+      </section>
+
+      <section id="menu" class="menu-section">
+        <h2>Menu</h2>
+        <div class="menu-grid" id="menuGrid"></div>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel" aria-hidden="true">
+      <h3>Your Order</h3>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-total">Total: <span id="cartTotal">$0.00</span></div>
+      <div class="cart-actions">
+        <button class="btn" id="clearCart">Clear</button>
+        <button class="btn primary" id="placeOrder">Place Order</button>
+      </div>
+    </aside>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">×</button>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">© Mi Cosina — USD prices • English</div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
   <script src="app.js"></script>
+
+  <!-- Loader / Fallback logic -->
+  <script>
+    function hideLoader() {
+      const loader = document.getElementById('loader');
+      const site = document.getElementById('site');
+      if (loader) loader.style.opacity = '0';
+      setTimeout(() => {
+        if (loader) loader.style.display = 'none';
+        if (site) site.style.visibility = 'visible';
+      }, 600);
+    }
+
+    // Hide loader after small delay
+    window.addEventListener('load', () => setTimeout(hideLoader, 900));
+    setTimeout(hideLoader, 3000); // fallback safety
+  </script>
 </body>
 </html>
